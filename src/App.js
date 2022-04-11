@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "./component/Header";
 import Tasks from "./component/Tasks";
 import AddTask from "./AddTask";
@@ -7,29 +7,44 @@ import Time from "./Time";
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: 'Doctors Appointment',
-      day: 'Feb. 5th @ 2:30pm',
-      reminder: true,
-    },
+  const [tasks, setTasks] = useState([ ]);
+
+  const audio = () =>{
+    const audioTune = new Audio('./assests/audio.mp3');
+    audioTune.play();
+  }
+
   
-    {
-      id: 2,
-      text: 'Meeting at School',
-      day: 'Feb. 6th @ 1:30pm',
-      reminder: true,
-    },
   
-    {
-      id: 3,
-      text: 'Food Shopping',
-      day: 'Feb. 7th @ 2:30pm',
-      reminder: true,
-    }
   
-  ])
+
+  useEffect(()=>{
+    tasks.forEach((task)=>{
+        //logic for setting alarm per task.
+        let timeToFire = (task.day).split(':');
+        let timeSplit = new Date()
+        timeSplit.setHours(timeToFire[0]);
+        timeSplit.setMinutes(timeToFire[1]);
+        timeSplit.setSeconds(0);
+        timeSplit.getTime()
+        
+        let setAlarm = timeSplit.getTime()
+        let currentTime =  new Date().getTime();
+        let timeLeft = setAlarm - currentTime
+       
+  
+        setTimeout(()=>{
+            audio()
+          },
+         timeLeft) 
+         
+         
+        console.log(currentTime, setAlarm, timeLeft, timeToFire)
+    });
+    
+    
+  },[tasks]);
+
 
   //DELETING TO DO ITEM
   const deleteTask = (id) =>{

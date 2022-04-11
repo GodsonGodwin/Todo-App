@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
-
+import React, {useEffect, useState} from 'react'
 const AddTask = ({onAdd}) =>{
     const[text, setText] = useState('');
-    const[day, setDay] = useState('');
+    const[day, setDay] = useState(''); 
     const[reminder, setReminder] = useState(false);
+
+   
+    const time = new Date().toLocaleTimeString();
+   
+    
 
     const onSubmit = (e)=>{
         e.preventDefault()
@@ -18,7 +22,12 @@ const AddTask = ({onAdd}) =>{
         setText('')
         setDay('')
         setReminder(false)
+
     }
+
+    
+   
+        
 
 return(
 
@@ -39,6 +48,7 @@ return(
        </div>
 
        <input type="submit" value='Save' className='btn btn-block'/>
+       
 
    </form>
   
