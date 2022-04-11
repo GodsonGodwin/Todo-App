@@ -8,15 +8,11 @@ const Time = () => {
         const date = new Date();
         let hour = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`;
         let minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
-        let seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : `${date.getSeconds()}`; 
-        console.log({hour, minutes, seconds});       
+        let seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : `${date.getSeconds()}`;       
         setTime(`${hour}: ${minutes}: ${seconds}`);
-          
-        
-        
-        
       }, 1000);
     }, []);
+  
   
     return (
       <div>
@@ -27,6 +23,7 @@ const Time = () => {
           padding:'10px',
           width: '150px',
           margin:' 0 auto' }}> {time} </h5>
+          <button onClick={audio}>Play</button>
       </div>
     );
   };
