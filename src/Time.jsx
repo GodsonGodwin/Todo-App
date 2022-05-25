@@ -23,7 +23,7 @@ const Time = () => {
           padding:'10px',
           width: '150px',
           margin:' 0 auto' }}> {time} </h5>
-          <button onClick={audio}>Play</button>
+          {/* <button onClick={audio}>Play</button> */}
       </div>
     );
   };
